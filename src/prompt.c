@@ -5,11 +5,10 @@
 #ifdef _WIN32
 #include <string.h>
 
-/* Declare a buffer for user input of size 2048 */
 static char buffer[2048];
 
 /* Fake readline function */
-char* readline(char* prompt){
+char* readline(char* prompt) {
   fputs(prompt, stdout);
   fgets(buffer, 2048, stdin);
   char* cpy = malloc(strlen(buffer)+1);
@@ -19,7 +18,7 @@ char* readline(char* prompt){
 }
 
 /* Fake add_history function */
-void add_history(char* unused){}
+void add_history(char* unused) {}
 
 /* Otherwise include the editline headers */
 #else
@@ -28,21 +27,20 @@ void add_history(char* unused){}
 #endif
 
 int main(int argc, char** argv) {
-
-  /* Print Version and Exit Information */
+   
   puts("Dudsy Version 0.0.0.0.1");
   puts("Press Ctrl+c to Exit\n");
-
-  /* In a never ending loop */
-  while(1) {
-
-    /* Now in either case readline will be correctly defines */
+   
+  while (1) {
+    
+    /* Now in either case readline will be correctly defined */
     char* input = readline("dudsy> ");
     add_history(input);
 
     printf("No you're a %s\n", input);
     free(input);
-
+    
   }
+  
   return 0;
 }
